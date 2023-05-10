@@ -66,6 +66,17 @@ void menu() {
 }
 
 void ins_prodotto(prodotto& p) {
+    system("cls");
 
+    cout << "Nome prodotto:\t";
+    cin >> p.nome;
+    cout << "Tipo prodotto:\t";
+    cin >> p.tipo;
+    cout << "Costo del prodotto:\t";
+    cin >> p.costo;
+    cout << "Quantita del prodotto:\t";
+    cin >> p.quantita;
+    cout << "Prezzo vendita:\t";
+    cin >> p.prezzo_vendita;
     return;
 }
