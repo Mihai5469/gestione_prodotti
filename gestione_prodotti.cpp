@@ -65,6 +65,7 @@ int main()
 
             break;
         case 3:
+            viz_prodotto(p, n);
 
             break;
         case 4:
@@ -167,7 +168,7 @@ void ins_prodotto(prodotto& p) {
 void viz_lst_prod(prodotto p[], int l) {
     system("cls");
     if (l == 0)
-        cout << "\t\tNON CI SONO PRODOTTI NELL MAGAZINO\n";
+        cout << "\t\tNON CI SONO PRODOTTI NELL MAGAZZINO\n";
     for (int i = 0; i < l; i++) {
         cout << "Nome: " << p[i].nome;
         cout << "\t\t\tTipo: " << p[i].tipo << endl;
@@ -177,6 +178,22 @@ void viz_lst_prod(prodotto p[], int l) {
 }
 
 void viz_prodotto(prodotto p[], int l) {
+    string nom;
+    system("cls");
+    cout << "Nome del prodotto : ";
+    cin >> nom;
 
+    for (int i = 0; i < l; l) {
+        if (p[i].nome == nom) {
+            cout << p[i].nome << endl;
+            cout << "Tipo: " << p[i].tipo << endl;
+            cout << "Data scadenza: " << p[i].scadenza.giorno << "/" << p[i].scadenza.mese << "/" << p[i].scadenza.anno << endl;
+            cout << "Quantita: " << p[i].quantita << endl;
+            cout << "Costo: " << p[i].costo << endl;
+            cout << "Prezzo vendita: " << p[i].prezzo_vendita << endl;
+            break;
+        }
+    }
+    system("pause");
     return;
 }
