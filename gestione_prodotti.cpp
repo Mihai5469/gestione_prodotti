@@ -36,6 +36,7 @@ void ins_prodotto(prodotto& p);                 //Inserisci un prodotto
 
 void viz_lst_prod(prodotto p[], int l);      //vizualizza tutti prodotti
 void viz_prodotto(prodotto p[], int l);          //cerca prodotto specifico
+void mod_prodotto(prodotto p[], int l);     //modifica prodotto
 
 int main()
 {
@@ -62,7 +63,7 @@ int main()
             break;
 
         case 2:
-
+            mod_prodotto(p, n);
             break;
         case 3:
             viz_prodotto(p, n);
@@ -177,6 +178,7 @@ void viz_lst_prod(prodotto p[], int l) {
     return;
 }
 
+//vizualizza prodotto specifico
 void viz_prodotto(prodotto p[], int l) {
     string nom;
     system("cls");
@@ -195,5 +197,22 @@ void viz_prodotto(prodotto p[], int l) {
         }
     }
     system("pause");
+    return;
+}
+
+//Funzione che modifica il prodotto
+void mod_prodotto(prodotto p[], int l) {
+    string nom;
+    system("cls");
+    cout << "Nome del prodotto : ";
+    cin >> nom;
+    for (int i = 0; i < l; l) {
+        if (p[i].nome == nom) {
+            ins_prodotto(p[i]);
+            break;
+        }
+    }
+    system("pause");
+
     return;
 }
