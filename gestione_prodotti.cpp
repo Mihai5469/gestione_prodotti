@@ -237,7 +237,7 @@ void ins_multi_prod(prodotto p[], int& l) {
     system("cls");
     for (int i = 0; i < n; i++) {
         cout << "Inserisci " << i + 1 << " prodotto\n";
-        ins_prodotto(p[i]);
+        ins_prodotto(p[l + 1]);
         system("cls");
         l++;
     }
