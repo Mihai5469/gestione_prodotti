@@ -25,18 +25,21 @@ struct prodotto {
 };
 
 void menu();
-void ins_nome(string& n);
-void ins_tipo(string& t);
+//funzioni di input per ogni dato
+void ins_nome(string& n);   
+void ins_tipo(string& t);   
 void ins_costo(float& c);
 void ins_quantita(int& q);
 void ins_prezzo(float& pr);
 void ins_data_scad(date& d);
 
-void ins_prodotto(prodotto& p);                 //Inserisci un prodotto
+void ins_prodotto(prodotto& p);             //Inserisci un prodotto
 
-void viz_lst_prod(prodotto p[], int l);      //vizualizza tutti prodotti
-void viz_prodotto(prodotto p[], int l);          //cerca prodotto specifico
+void viz_lst_prod(prodotto p[], int l);     //vizualizza tutti prodotti
+void viz_prodotto(prodotto p[], int l);     //cerca prodotto specifico
 void mod_prodotto(prodotto p[], int l);     //modifica prodotto
+void ins_multi_prod(prodotto p[], int& l);  //inserisce piu prodotti
+void canc_prod(prodotto p[], int& l);       //cancella prodotto
 
 int main()
 {
@@ -58,25 +61,30 @@ int main()
             break;
 
         case 1:
+            system("cls");
             ins_prodotto(p[n]);
             n++;
+            system("pause");
             break;
 
         case 2:
             mod_prodotto(p, n);
+            system("pause");
             break;
         case 3:
             viz_prodotto(p, n);
 
             break;
         case 4:
+            canc_prod(p, n);
 
             break;
         case 5:
-
+            ins_multi_prod(p, n);
             break;
         case 6:
             viz_lst_prod(p, n);
+            system("pause");
             break;
         }
         
@@ -153,7 +161,7 @@ void ins_data_scad(date& d) {
 
 
 void ins_prodotto(prodotto& p) {
-    system("cls");
+    //system("cls");
 
     ins_nome(p.nome);
     ins_tipo(p.tipo);
@@ -174,7 +182,7 @@ void viz_lst_prod(prodotto p[], int l) {
         cout << "Nome: " << p[i].nome;
         cout << "\t\t\tTipo: " << p[i].tipo << endl;
     }
-    system("pause");
+    //system("pause");
     return;
 }
 
@@ -185,7 +193,7 @@ void viz_prodotto(prodotto p[], int l) {
     cout << "Nome del prodotto : ";
     cin >> nom;
 
-    for (int i = 0; i < l; l) {
+    for (int i = 0; i < l; i++) {
         if (p[i].nome == nom) {
             cout << p[i].nome << endl;
             cout << "Tipo: " << p[i].tipo << endl;
@@ -195,6 +203,8 @@ void viz_prodotto(prodotto p[], int l) {
             cout << "Prezzo vendita: " << p[i].prezzo_vendita << endl;
             break;
         }
+        else if (i == l - 1 && p[i].nome != nom)
+            cout << "\t\tPRODOTTO NON TROVATO\n";
     }
     system("pause");
     return;
@@ -206,13 +216,51 @@ void mod_prodotto(prodotto p[], int l) {
     system("cls");
     cout << "Nome del prodotto : ";
     cin >> nom;
-    for (int i = 0; i < l; l) {
+    for (int i = 0; i < l; i++) {
         if (p[i].nome == nom) {
             ins_prodotto(p[i]);
             break;
         }
+        if (i == l - 1 && p[i].nome != nom)
+            cout << "PRODOTTO NON TROVATO\n";
     }
     system("pause");
+
+    return;
+}
+
+//funzione input piu prodotti di fila
+void ins_multi_prod(prodotto p[], int& l) {
+    int n = 0;
+    cout << "Quanti prodotti vuoi inserire: ";
+    cin >> n;
+    system("cls");
+    for (int i = 0; i < n; i++) {
+        cout << "Inserisci " << i + 1 << " prodotto\n";
+        ins_prodotto(p[i]);
+        system("cls");
+        l++;
+    }
+
+    return;
+}
+
+//funzione che cancela il prodotto
+void canc_prod(prodotto p[], int& l) {
+    viz_lst_prod(p, l);
+    string nom;
+    int i = 0 ;
+    cout << "Prodotto che vuoi cancelare: ";
+    cin >> nom;
+    while (p[i].nome != nom && i < l)
+        i++;
+
+    if (i = l - 1 && p[i].nome != nom)
+        cout << "PRODOTTO NO TROVATO\n";
+    else
+        for (int j = i; j < l - 1; j++) 
+            p[j] = p[j + 1];
+    l--;
 
     return;
 }
